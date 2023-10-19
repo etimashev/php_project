@@ -37,3 +37,9 @@ services:
       - 5432:5432
     volumes:
       - ./postgres/:/docker-entrypoint-initdb.d/
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080

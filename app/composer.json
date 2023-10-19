@@ -10,5 +10,12 @@
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "controllers/",
+            "DB\\": "db/",
+            "Utility\\": "utility/"
+        }
     }
 }
