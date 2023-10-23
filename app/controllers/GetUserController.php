@@ -13,15 +13,27 @@ class GetUserController
             return;
         }
 
+        $accountId = $request['id'];
         $dbc = Connection::getConnection();
+        $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
 
-        pg_prepare($dbc, 'get_user', 'SELECT * FROM users WHERE id = $1');
-        $result = pg_execute($dbc, 'get_user', [$request['id']]);
+        pg_prepare($dbc, 'get_user', 'SELECT
+            "AccountId",
+            "UserSegment",
+            "Rides",
+            "Duration",
+            "Distance",
+            "LocationCnt",
+            array_to_json("LocationName") as "LocationName"
+         FROM ' . $table . ' WHERE "AccountId" = $1');
+
+        $result = pg_execute($dbc, 'get_user', [$accountId]);
 
         if (isset(pg_fetch_all($result)[0])) {
-            return json_encode(pg_fetch_all($result)[0]);
+            return json_encode(['data' => pg_fetch_all($result)[0]]);
         } else {
-            return [];
+            http_response_code(404);
+            return json_encode(['data' => [], 'message' => "Пользователь с AccountId '$accountId' не найден"]);
         }
     }
 }

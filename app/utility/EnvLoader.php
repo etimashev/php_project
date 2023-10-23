@@ -10,24 +10,24 @@ class EnvLoader
 
     public static function init()
     {
-        self::$envFilePath = realpath(__DIR__ . '/../.env');
+        static::$envFilePath = realpath(__DIR__ . '/../.env');
 
-        if (!is_file(self::$envFilePath)) {
+        if (!is_file(static::$envFilePath)) {
             throw new ErrorException("Environment File is Missing.");
         }
 
-        if (!is_readable(self::$envFilePath)) {
-            throw new ErrorException("Permission Denied for reading the " . (self::$envFilePath) . ".");
+        if (!is_readable(static::$envFilePath)) {
+            throw new ErrorException("Permission Denied for reading the " . (static::$envFilePath) . ".");
         }
 
-        self::writeVariables();
+        static::writeVariables();
     }
 
     protected static function writeVariables(): void
     {
         $envVars = array();
 
-        if ($fopen = fopen(self::$envFilePath, 'r')) {
+        if ($fopen = fopen(static::$envFilePath, 'r')) {
             while (($line = fgets($fopen)) !== false) {
                 $lineIsComment = (substr(trim($line), 0, 1) == '#') ? true : false;
 

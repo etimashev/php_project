@@ -1,5 +1,13 @@
 version: '3'
 
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  db-storage:
+    driver: local
+
 services:
   web:
     image: nginx
@@ -15,11 +23,10 @@ services:
 
   php:
     build:
-      dockerfile: ./php/dev.Dockerfile
+      dockerfile: ./php/Dockerfile
     restart: unless-stopped
     volumes:
-      - ./php/dev-php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./app:/var/www/html
 
   composer:
@@ -36,7 +43,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgres/:/docker-entrypoint-initdb.d/
+      - db-storage:/var/lib/postgresql/data
 
   adminer:
     image: adminer

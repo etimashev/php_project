@@ -9,11 +9,11 @@ class Router
     public static function init(string $method, string $uri, array $request)
     {
         if ($method === 'GET') {
-            echo self::get(uri: $uri, request: $request);
+            echo static::get(uri: $uri, request: $request);
         }
 
         if ($method === 'POST') {
-            echo self::post(uri: $uri, request: $request);
+            echo static::post(uri: $uri, request: $request);
         }
     }
 

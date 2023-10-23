@@ -1,0 +1,18 @@
+2023-10-23T13:35:42+03:00 [info]: Неизвестная ошибка: [2] Array to string conversion. Строка 12 файла /var/www/html/utility/Router.php
+2023-10-23T13:38:00+03:00 [info]: Неизвестная ошибка: [2] Array to string conversion. Строка 12 файла /var/www/html/utility/Router.php
+2023-10-23T13:38:16+03:00 [info]: Неизвестная ошибка: [2] Array to string conversion. Строка 12 файла /var/www/html/utility/Router.php
+2023-10-23T13:41:31+03:00 [info]: Неизвестная ошибка: [2] Array to string conversion. Строка 12 файла /var/www/html/utility/Router.php
+2023-10-23T13:43:55+03:00 [info]: Неизвестная ошибка: [2] Array to string conversion. Строка 12 файла /var/www/html/utility/Router.php
+2023-10-23T13:55:01+03:00 [info]: Неизвестная ошибка: [2] pg_prepare(): Query failed: ERROR:  relation &amp;quot;users&amp;quot; does not exist
+LINE 9:          FROM users WHERE &amp;quot;AccountId&amp;quot; = $1
+                      ^. Строка 20 файла /var/www/html/controllers/GetUserController.php
+2023-10-23T13:55:01+03:00 [info]: Неизвестная ошибка: [2] pg_execute(): Query failed: ERROR:  prepared statement &amp;quot;get_user&amp;quot; does not exist. Строка 30 файла /var/www/html/controllers/GetUserController.php
+2023-10-23T13:55:01+03:00 [info]: Не перехваченное исключение: pg_fetch_all(): Argument #1 ($result) must be of type PgSql\Result, bool given
+2023-10-23T13:59:42+03:00 [error]: Неизвестная ошибка: [2] pg_prepare(): Query failed: ERROR:  relation &amp;quot;users&amp;quot; does not exist
+LINE 9:          FROM users WHERE &amp;quot;AccountId&amp;quot; = $1
+                      ^. Строка 20 файла /var/www/html/controllers/GetUserController.php
+2023-10-23T14:02:04+03:00 [error]: Неизвестная ошибка: [2] pg_prepare(): Query failed: ERROR:  relation &amp;quot;users&amp;quot; does not exist
+LINE 9:          FROM users WHERE &amp;quot;AccountId&amp;quot; = $1
+                      ^. Строка 20 файла /var/www/html/controllers/GetUserController.php
+2023-10-23T14:09:21+03:00 [error]: Неизвестная ошибка: [2] pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &amp;quot;php_proj-db-1&amp;quot; to address: Temporary failure in name resolution. Строка 41 файла /var/www/html/db/Connection.php
+2023-10-23T14:09:54+03:00 [error]: Неизвестная ошибка: [2] pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &amp;quot;php_proj-db-1&amp;quot; to address: Temporary failure in name resolution. Строка 41 файла /var/www/html/db/Connection.php
