@@ -22,6 +22,7 @@ services:
       - db
 
   php:
+    container_name: php-app
     build:
       dockerfile: ./php/Dockerfile
     restart: unless-stopped

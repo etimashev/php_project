@@ -16,3 +16,7 @@ LINE 9:          FROM users WHERE &amp;quot;AccountId&amp;quot; = $1
                       ^. Строка 20 файла /var/www/html/controllers/GetUserController.php
 2023-10-23T14:09:21+03:00 [error]: Неизвестная ошибка: [2] pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &amp;quot;php_proj-db-1&amp;quot; to address: Temporary failure in name resolution. Строка 41 файла /var/www/html/db/Connection.php
 2023-10-23T14:09:54+03:00 [error]: Неизвестная ошибка: [2] pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &amp;quot;php_proj-db-1&amp;quot; to address: Temporary failure in name resolution. Строка 41 файла /var/www/html/db/Connection.php
+2023-10-23T14:30:59+03:00 [error]: Неизвестная ошибка: [2] pg_connect(): Unable to connect to PostgreSQL server: could not translate host name &amp;quot;php_proj-db-1&amp;quot; to address: Temporary failure in name resolution. Строка 41 файла /var/www/html/db/Connection.php
+2023-10-23T14:32:07+03:00 [error]: Неизвестная ошибка: [2] pg_prepare(): Query failed: ERROR:  relation &amp;quot;users&amp;quot; does not exist
+LINE 9:          FROM users WHERE &amp;quot;AccountId&amp;quot; = $1
+                      ^. Строка 20 файла /var/www/html/controllers/GetUserController.php

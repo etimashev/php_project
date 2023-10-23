@@ -15,9 +15,9 @@ services:
     restart: unless-stopped
     depends_on:
       - php
-      - db
 
   php:
+    container_name: php-app
     build:
       dockerfile: ./php/Dockerfile
     restart: unless-stopped
