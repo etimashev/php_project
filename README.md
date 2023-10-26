@@ -36,5 +36,6 @@ cp app/.env.example app/.env # скопировать .env приложения 
 # Ссылки
 
 http://localhost - Основное приложение
+http://localhost/getUser?id=62f87e88ef72a5216b630111 - получение информации по id пользователя
 <br>
 http://localhost:8080 - adminer, аналог phpmyadmin, но легковеснее (только для dev)
