@@ -20,11 +20,11 @@ class Router
     protected static function get(string $uri, array $request)
     {
         switch ($uri) {
-            case '/getUser':
+            case '/':
                 return (new GetUserController())($request);
                 break;
             default:
-                phpinfo();
+                http_response_code(404);
                 break;
         }
     }
@@ -33,6 +33,7 @@ class Router
     {
         switch ($uri) {
             default:
+                http_response_code(404);
                 break;
         }
     }

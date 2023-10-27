@@ -16,16 +16,17 @@ class GetUserController
         $accountId = $request['id'];
         $dbc = Connection::getConnection();
         $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
+        $idField = getenv('POSTGRES_TABLE_ID') ? getenv('POSTGRES_TABLE_ID') : 'AccountId';
 
         pg_prepare($dbc, 'get_user', 'SELECT
-            "AccountId",
+            "' . $idField . '",
             "UserSegment",
             "Rides",
             "Duration",
             "Distance",
             "LocationCnt",
             array_to_json("LocationName") as "LocationName"
-         FROM ' . $table . ' WHERE "AccountId" = $1');
+         FROM ' . $table . ' WHERE "' . $idField . '" = $1');
 
         $result = pg_execute($dbc, 'get_user', [$accountId]);
 

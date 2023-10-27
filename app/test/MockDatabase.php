@@ -39,9 +39,10 @@ class MockDatabase
     {
         $dbc = Connection::getConnection();
         $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
+        $idField = getenv('POSTGRES_TABLE_ID') ? getenv('POSTGRES_TABLE_ID') : 'AccountId';
 
         pg_prepare($dbc, 'create_table', 'CREATE TABLE ' . $table . '(
-            "AccountId" varchar,
+            "' . $idField . '" varchar,
             "UserSegment" integer,
             "Rides" integer,
             "Duration" integer,
