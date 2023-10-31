@@ -16,6 +16,8 @@ cp app/.env.example app/.env # скопировать .env приложения 
 
 ./seed_test_db # заполнить базу данных тестовыми значениями (единожды)
 
+./fill_redis # выгрузить в redis таблицу
+
 ./down.dev # выключить приложение
 ```
 
@@ -23,6 +25,8 @@ cp app/.env.example app/.env # скопировать .env приложения 
 
 ```bash
 ./up.prod # собрать приложение без локального postgres
+
+./fill_redis # выгрузить в redis таблицу
 
 ./down.prod # выключить приложение
 ```
