@@ -3,7 +3,8 @@
 namespace Test;
 
 require_once __DIR__ . '/../db/Connection.php';
-use DB\Connection;
+require_once __DIR__ . '/../db/Postgres.php';
+use DB\Postgres;
 require_once __DIR__ . '/../utility/EnvLoader.php';
 use Utility\EnvLoader;
 
@@ -37,18 +38,18 @@ class MockDatabase
 
     protected static function createTable()
     {
-        $dbc = Connection::getConnection();
+        $dbc = Postgres::getConnection();
         $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
         $idField = getenv('POSTGRES_TABLE_ID') ? getenv('POSTGRES_TABLE_ID') : 'AccountId';
 
         pg_prepare($dbc, 'create_table', 'CREATE TABLE ' . $table . '(
             "' . $idField . '" varchar,
-            "UserSegment" integer,
-            "Rides" integer,
-            "Duration" integer,
-            "Distance" integer,
-            "LocationCnt" integer,
-            "LocationName" varchar[]
+            "usersegment" integer,
+            "rides" integer,
+            "duration" integer,
+            "distance" integer,
+            "locationcnt" integer,
+            "locationname" varchar
         );');
 
         pg_execute($dbc, 'create_table', []);
@@ -58,17 +59,18 @@ class MockDatabase
 
     protected static function fillTable()
     {
-        $dbc = Connection::getConnection();
+        $dbc = Postgres::getConnection();
         $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
+        $idField = getenv('POSTGRES_TABLE_ID') ? getenv('POSTGRES_TABLE_ID') : 'AccountId';
 
         pg_prepare($dbc, 'fill_table', 'INSERT INTO ' . $table . '(
-            "AccountId",
-            "UserSegment",
-            "Rides",
-            "Duration",
-            "Distance",
-            "LocationCnt",
-            "LocationName"
+            "' . $idField . '",
+            "usersegment",
+            "rides",
+            "duration",
+            "distance",
+            "locationcnt",
+            "locationname"
         ) values ($1, $2, $3, $4, $5, $6, $7);');
 
         foreach (self::$data as $row) {

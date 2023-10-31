@@ -45,7 +45,7 @@ class Handler
         });
 
         set_exception_handler(function (Throwable $e) {
-            $message = 'Не перехваченное исключение: ' . $e->getMessage();
+            $message = 'Не перехваченное исключение: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString();
 
             Logger::error($message);
 

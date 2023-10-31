@@ -2,13 +2,8 @@
 
 namespace DB;
 
-use Exception;
-use PgSql\Connection as PgSqlConnection;
-
-class Connection
+abstract class Connection
 {
-    protected static ?PgSqlConnection $connection = null;
-
     protected function __construct()
     {
         //
@@ -19,32 +14,14 @@ class Connection
         //
     }
 
-    public static function getConnection(): PgSqlConnection
+    public static function getConnection()
     {
-        if (self::$connection) {
-            return self::$connection;
+        if (static::$connection) {
+            return static::$connection;
         }
 
-        return self::connect();
+        return static::connect();
     }
 
-    protected static function connect(): PgSqlConnection
-    {
-        try {
-            $host = getenv('POSTGRES_HOST') ? getenv('POSTGRES_HOST') : 'localhost';
-            $port = getenv('POSTGRES_PORT') ? getenv('POSTGRES_PORT') : '5432';
-            $dbname = getenv('POSTGRES_DB') ? getenv('POSTGRES_DB') : 'postgres';
-            $user = getenv('POSTGRES_USER') ? getenv('POSTGRES_USER') : 'postgres';
-            $password = getenv('POSTGRES_PASSWORD') ? getenv('POSTGRES_PASSWORD') : 'password';
-
-            $connectionString = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password}";
-            self::$connection = pg_connect($connectionString);
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-
-            throw $e;
-        }
-
-        return self::$connection;
-    }
+    abstract protected static function connect();
 }

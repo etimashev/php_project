@@ -7,7 +7,14 @@ RUN apt update && apt install --no-install-recommends --no-install-suggests -y \
     libpq-dev
 
 RUN docker-php-ext-install pgsql \
-    pdo_pgsql
+    pdo_pgsql \
+    opcache
+
+RUN pecl install \
+    redis
+
+RUN docker-php-ext-enable \
+    redis
 
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
