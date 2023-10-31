@@ -1,6 +1,7 @@
 {
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "eftec/bladeone": "^4.9"
     },
     "config": {
         "optimize-autoloader": true,

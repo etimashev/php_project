@@ -24,8 +24,7 @@ class Router
                 return (new GetUserController())($request);
                 break;
             default:
-                // http_response_code(404);
-                \phpinfo();
+                http_response_code(404);
                 break;
         }
     }
