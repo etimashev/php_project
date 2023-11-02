@@ -73,10 +73,50 @@ class MockDatabase
             "locationname"
         ) values ($1, $2, $3, $4, $5, $6, $7);');
 
+        static::print('Mock started');
+
         foreach (self::$data as $row) {
             pg_execute($dbc, 'fill_table', $row);
         }
 
+        static::print('Mock ended');
+
         echo pg_last_error($dbc);
+    }
+
+    protected static function fillTableHuge()
+    {
+        $dbc = Postgres::getConnection();
+        $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
+        $idField = getenv('POSTGRES_TABLE_ID') ? getenv('POSTGRES_TABLE_ID') : 'AccountId';
+
+        pg_prepare($dbc, 'fill_table', 'INSERT INTO ' . $table . '(
+            "' . $idField . '",
+            "usersegment",
+            "rides",
+            "duration",
+            "distance",
+            "locationcnt",
+            "locationname"
+        ) values ($1, $2, $3, $4, $5, $6, $7);');
+
+        static::print('Mock started');
+
+        for ($i = 0; $i < 100000; $i++) {
+            foreach (self::$data as $row) {
+                pg_execute($dbc, 'fill_table', $row);
+            }
+
+            static::print("Progress: $i/100000");
+        }
+
+        static::print('Mock ended');
+
+        echo pg_last_error($dbc);
+    }
+
+    protected static function print(string $message)
+    {
+        echo '[' . date('h:i:s') . ']: ' . $message . PHP_EOL;
     }
 }

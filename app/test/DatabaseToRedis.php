@@ -45,15 +45,15 @@ class DatabaseToRedis
 
         do {
             $result = pg_execute($dbc, 'get_users', [$limit, $offset]);
-            $fetched = pg_fetch_all($result);
+            $result = pg_fetch_all($result);
 
-            foreach ($fetched as $row) {
+            foreach ($result as $row) {
                 $row['locationname'] = json_decode($row['locationname'], JSON_UNESCAPED_UNICODE);
 
                 $redis->set($row[$idField], json_encode($row, JSON_UNESCAPED_UNICODE));
             }
 
-            $count = count($fetched);
+            $count = count($result);
             $total += $count;
 
             static::print('Filled ' . "$count/$total" . ' rows');
