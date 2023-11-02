@@ -22,7 +22,7 @@ class DatabaseToRedis
     protected static function loadData()
     {
         $dbc = Postgres::getConnection();
-        $redis = Redis::getConnection();
+        $redis = Redis::getSeeder();
 
         $table = getenv('POSTGRES_TABLE') ? getenv('POSTGRES_TABLE') : 'users';
         $idField = getenv('POSTGRES_TABLE_ID') ? getenv('POSTGRES_TABLE_ID') : 'AccountId';

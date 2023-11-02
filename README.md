@@ -6,7 +6,8 @@
 
 ```bash
 cp postgres/.env.example postgres/.env # скопировать .env и заполнить данными postgres - (только для dev разворачивания)
-cp app/.env.example app/.env # скопировать .env приложения и изменить данные для postgres
+cp app/.env.example app/.env # скопировать .env приложения и изменить данные для postgres и redis
+cp redis/users.acl.example redis/users.acl # скопировать users.acl redis и изменить пароль redis
 ```
 
 # Разворачивание приложения для разработки
@@ -15,8 +16,7 @@ cp app/.env.example app/.env # скопировать .env приложения 
 ./up.dev # собрать приложение вместе с локальным postgres
 
 ./seed_test_db # заполнить базу данных тестовыми значениями (единожды)
-
-./fill_redis # выгрузить в redis таблицу
+./up.dev # ещё раз после заполнения базы данных (единожды)
 
 ./down.dev # выключить приложение
 ```
@@ -25,8 +25,6 @@ cp app/.env.example app/.env # скопировать .env приложения 
 
 ```bash
 ./up.prod # собрать приложение без локального postgres
-
-./fill_redis # выгрузить в redis таблицу
 
 ./down.prod # выключить приложение
 ```

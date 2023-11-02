@@ -1,0 +1,3 @@
+user default off
+user seeder on >seederpass ~* +set
+user reader on >readerpass ~* +get

@@ -32,6 +32,22 @@ services:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
+      redis-seeder:
+        condition: service_completed_successfully
+
+  redis-seeder:
+    build:
+      dockerfile: ./php/Dockerfile
+    restart: no
+    volumes:
+      - ./redis/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./app:/var/www/html
+    depends_on:
+      composer:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    command: ["php", "fill_redis.php"]
 
   redis:
     container_name: redis
@@ -39,6 +55,9 @@ services:
     ports:
       - "6379:6379"
     restart: unless-stopped
+    volumes:
+      - ./redis/redis.conf:/etc/redis/redis.conf
+    command: ["redis-server", "/etc/redis/redis.conf"]
     healthcheck:
       test: redis-cli ping
       interval: 5s
